@@ -6,6 +6,7 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
+      background-color: ;
     }
     
     canvas {
@@ -35,7 +36,7 @@
       var numLines = 5000;
       var lineSpacing = 1;
       var lineWidth = 2;
-      var colorSpeed = 0.6;
+      var colorSpeed = 1;
 
       function draw() {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -59,7 +60,7 @@
           context.stroke();
         }
 
-        angleOffset += 0.01;
+        angleOffset += 0.05; // Increase the speed of motion
 
         requestAnimationFrame(draw);
       }

@@ -62,13 +62,15 @@
           background-color: #1f0039;
         }
       }
+
     </style>
   </head>
   <body>
-    <div class="container"></div>
+    <div class="container">
+    </div>
 
     <script>
-      const numCircles = 124; // Number of concentric circles
+      const numCircles = 83; // Number of concentric circles
       const circleSpacing = 15; // Spacing between each circle
 
       const container = document.querySelector(".container");
@@ -78,7 +80,7 @@
       );
 
       for (let i = 0; i < numCircles; i++) {
-        const circleSize = containerSize - i * circleSpacing;
+        const circleSize = containerSize - 1.5*i * circleSpacing;
         const circle = document.createElement("div");
         circle.className = "circle";
         circle.style.width = `${circleSize}px`;
