@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="illusionCanvas"></canvas>
+
+  <script>
+    // Get the canvas element
+    var canvas = document.getElementById('illusionCanvas');
+    var context = canvas.getContext('2d');
+
+    // Set the canvas size to fill the window
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Generate the psychedelic illusion pattern
+    function generatePattern() {
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var maxRadius = Math.min(centerX, centerY);
+
+      var angleOffset = 0;
+      var numLines = 5000;
+      var lineSpacing = 1;
+      var lineWidth = 2;
+      var colorSpeed = 0.6;
+
+      function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (var i = 0; i < numLines; i++) {
+          var angle = i * 0.1;
+          var radius = i * lineSpacing;
+
+          var x1 = centerX + Math.cos(angle + angleOffset) * radius;
+          var y1 = centerY + Math.sin(angle + angleOffset) * radius;
+          var x2 = centerX + Math.cos(angle + angleOffset + 0.2) * (radius + lineSpacing);
+          var y2 = centerY + Math.sin(angle + angleOffset + 0.2) * (radius + lineSpacing);
+
+          context.beginPath();
+          context.moveTo(x1, y1);
+          context.lineTo(x2, y2);
+          context.closePath();
+
+          context.lineWidth = lineWidth;
+          context.strokeStyle = 'hsl(' + (i * colorSpeed) + ', 100%, 50%)';
+          context.stroke();
+        }
+
+        angleOffset += 0.01;
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    }
+
+    // Generate the pattern when the page is loaded
+    window.addEventListener('load', generatePattern);
+  </script>
+</body>
+</html>
